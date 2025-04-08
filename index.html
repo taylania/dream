@@ -1,20 +1,83 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glitter Falling Effect</title>
+  <link rel="stylesheet" href="style.css">
+  
   <style>
-   body { Background-image: url(https://taylania.github.io/dream/images/backgrounddream.png);
-background-repeat: repeat;}
-    
-       h1 {text-align: center;
-         font-family: 'Brush Script MT', cursive;}
+    body {
+      background-image: url(https://taylania.github.io/dream/images/backgrounddream.png);
+      background-repeat: repeat;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #glitter-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20%;
+      height: 100%;
+    }
+
+    .glitter {
+      position: absolute;
+      font-size: 20px; 
+      color: #ffffff; 
+      opacity: 0.7;
+      animation: fall 6s infinite;
+      pointer-events: none; 
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Brush Script MT', cursive;
+    }
   </style>
 </head>
-  <body>
-    <br>
-    <h1 style="color: #e65792;"> ♡ Dream Rabbit Cafe ♡ </h1> 
-    <center><i><p style="color: #f2aecb;">Welcome to the Dream Rabbit Cafe... What do you dream of ordering today?</p></i></center>
-    <center><iframe src="https://taylania.github.io/december21/" width="60%" height="500" title="Cafe Menu"></iframe></center>
-        <center><i><p style="color: #f2aecb;">Thank you! Please order again! ♡ </p></i></center>
-    <br>
-    <br>
-  </body>
+
+  <div id="glitter-container"></div>
+
+  <script>
+    const glitterContainer = document.getElementById('glitter-container');
+
+    function createGlitter() {
+      const glitter = document.createElement('div');
+      glitter.classList.add('glitter');
+      
+      glitter.innerHTML = '♡';
+      
+      const xPosition = Math.random() * window.innerWidth;
+      glitter.style.left = `${xPosition}px`;
+      
+      const duration = Math.random() * 4 + 6; 
+      glitter.style.animationDuration = `${duration}s`;
+
+      glitterContainer.appendChild(glitter);
+
+      setTimeout(() => {
+        glitter.remove();
+      }, duration * 1000);
+    }
+
+    
+    setInterval(createGlitter, 150); 
+  </script>
+<body>
+  <h1 style="color: #e65792;"> ♡ Dream Rabbit Cafe ♡ </h1>
+  <center><i><p style="color: #f2aecb;">Welcome to the Dream Rabbit Cafe... What do you dream of ordering today?</p></i></center>
+  <center><iframe src="https://taylania.github.io/december21/" width="60%" height="500" title="Cafe Menu"></iframe></center>
+  <center><i><p style="color: #f2aecb;">Thank you! Please order again! ♡ </p></i></center>
+</body>
 </html>
